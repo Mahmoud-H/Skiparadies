@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -14,11 +14,12 @@ class SettingController extends Controller
      */
     public function index()
     {
-       // $products = Product::latest()->paginate(5);
+          $setting = Setting::all();
+       // dd(count($setting));
     
      //   return view('products.index',compact('products'))
          //   ->with('i', (request()->input('page', 1) - 1) * 5);
-         return view('setting.index');
+         return view('setting.index',compact('setting'));
     }
 
     /**
@@ -28,7 +29,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+          return view('setting.create');
     }
 
     /**
@@ -38,16 +39,17 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
+        //dd($request->all());
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'address' => 'required',
+            'telephone' => 'required',
         ]);
     
-        Product::create($request->all());
+        Setting::create($request->all());
      
-        return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+        return redirect()->route('setting.index')
+                        ->with('success','Contact created successfully.');
     }
 
     /**
@@ -56,9 +58,10 @@ class SettingController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Setting $setting)
     {
-        return view('products.show',compact('product'));
+       // dd($setting);
+        return view('setting.show',compact('setting'));
     }
 
     /**
@@ -67,9 +70,10 @@ class SettingController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Setting $setting)
     {
-        return view('products.edit',compact('product'));
+       // dd($setting);
+        return view('setting.edit',compact('setting'));
     }
 
     /**
@@ -79,17 +83,17 @@ class SettingController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Setting $setting)
     {
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'address' => 'required',
+            'telephone' => 'required',
         ]);
     
-        $product->update($request->all());
+        $setting->update($request->all());
     
-        return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+        return redirect()->route('setting.index')
+                        ->with('success','Contact updated successfully');
     }
 
     /**
@@ -98,11 +102,11 @@ class SettingController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Setting $setting)
     {
-        $product->delete();
+        $setting->delete();
     
-        return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+        return redirect()->route('setting.index')
+                        ->with('success','Contact deleted successfully');
     }
 }

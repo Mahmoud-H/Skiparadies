@@ -72,7 +72,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-       // dd($setting);
+        //dd($setting);
         return view('setting.edit',compact('setting'));
     }
 

@@ -40,9 +40,8 @@
                   <tr>
                     <td>
                       
-                       <a href="{{ asset('storage/'.$img->image) }}" target="_blank">show image</a> 
-            
- 
+             
+ <img src="/image/{{ $img->image }}" width="100px">
 
                       </td>
                    
@@ -52,8 +51,9 @@
                            <a class="btn btn-primary btn-sm" href="{{ route('logo.show',$img->id) }}">
                               <i class="fas fa-folder">
                               </i>
-                              View
+                              View 
                           </a>
+                          
                           <a class="btn btn-info btn-sm" href="{{ route('logo.edit',$img->id) }}">
                               <i class="fas fa-pencil-alt">
                               </i>

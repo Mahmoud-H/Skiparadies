@@ -24,3 +24,9 @@ Route::get('/', function () {
  Route::resource('home', HomeController::class);
 
  Route::resource('setting', SettingController::class);
+
+ Route::resource('logo', ImageController::class);
+
+
+// Route::get('/image', [ImageController::class,'index'])->name('image.index');
+// Route::post('/image', [ImageController::class,'store'])->name('image.store');
